@@ -1,19 +1,28 @@
-# ahcg_pipeline
+## ahcg_pipeline
 Variant calling pipeline for genomic data analysis
 
-## Requirements
+## Download Virtualbox
+https://www.virtualbox.org/wiki/Downloads
+
+## Set up Virtualbox
+# Download .ova file
+https://da1s119xsxmu0.cloudfront.net/sites/developer/native/nativeappsvm/BaseSpace%20Native%20App%20VM%20(phix%20only)%20v9.ova
+
+#Connect via putty
+Host: vagrant@localhost
+Password: vagrant
+Port: 2222
+
+## Clone Shashi's AHCG Pipeline
+git clone https://github.com/shashidhar22/ahcg_pipeline.git
+
+## Requirements: Can be downloaded manually or use git pull origin master
 
 1. [Python3 - version 3.4.1](https://www.python.org/download/releases/3.4.1/)
 2. [Trimmomatic - version 0.36](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.36.zip)
 3. [Bowtie2 - version 2.2.9](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.2.9/)
 4. [Picard tools - version 2.6.0](https://github.com/broadinstitute/picard/releases/download/2.6.0/picard.jar)
 5. [GATK - version 3.4](https://software.broadinstitute.org/gatk/download/)
-
-## Connect:
-Connect via putty
-username: vagrant
-password: vagrant
-port: 2222
 
 ## Java install
 Tried installing java from source, ran into many issues. Installed via sudo.
@@ -43,7 +52,11 @@ samtools faidx hg19.fa
 ## bowtie index
 Originally downloaded bowtie index from Shashi, but those were not compatible with the reference file. So the index files were built from bowtie.
 
+## Download the reference genome
+wget www.prism.gatech.edu/~sravishankar9/resources.tar.gz
+
 ## github ssh
+Added github ssh key 'biol'
 
 ## Download NIST test data
 
@@ -60,6 +73,17 @@ head -100000 NIST7035_TAAGGCGA_L001_R1_001.fastq > test_r1.fastq
 head -100000 NIST7035_TAAGGCGA_L001_R2_001.fastq > test_r2.fastq
 
 ## git ignore
+Add the directories you don't wish to commit to git ignore
+
+
+## git commit instructions
+git add.README.md
+git commit -m "revisions, should be more detailed"
+git config --global user.email jmoore335@gatech.edu
+git commit -m "revisions, should be more detailed"
+git push origin master
+
+The revised README file has now be committed to github.
 
 ## Reference genome
 
