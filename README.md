@@ -32,7 +32,7 @@ sudo apt-get install jre-default
 ##
 java -jar picard.jar CreateSequenceDictionary R=hg.19.fa O=hg19.dict
 
-##
+## Install samtools
 Installed samtools (& bcftools, htslib) via source. 
 samtools-1.3.1 bcftools-1.3.1 htslib-1.3.1
 
@@ -52,8 +52,14 @@ samtools faidx hg19.fa
 ## bowtie index
 Originally downloaded bowtie index from Shashi, but those were not compatible with the reference file. So the index files were built from bowtie.
 
+bowtie2-build -f /path/to/hg19.fa hg19
+
 ## Download the reference genome
 wget www.prism.gatech.edu/~sravishankar9/resources.tar.gz
+
+gunzip resources.tar.gz
+
+tar -xvf resources.tar
 
 ## github ssh
 Added github ssh key 'biol'
@@ -72,9 +78,18 @@ head -100000 NIST7035_TAAGGCGA_L001_R1_001.fastq > test_r1.fastq
 
 head -100000 NIST7035_TAAGGCGA_L001_R2_001.fastq > test_r2.fastq
 
+## Run the ahcg pipeline
+
+python3 ahcg_pipeline.py -t ./lib/Trimmomatic-0.36/trimmomatic-0.36.jar -b ./lib/bowtie2-2.2.9/bowtie2 -p ./lib/picard.jar -g ./lib/GenomeAnalysisTK.jar -i ./test_r*.fastq -w ./hg19 -d ./resources/dbsnp/dbsnp_138.hg19.vcf -r ./resources/genome/hg19.fa -a ./lib/Trimmomatic-0.36/adapters/TruSeq2-PE.fa -o outputdir
+
+
+
 ## git ignore
 Add the directories you don't wish to commit to git ignore
 
+vim git.ignore
+
+Add .fastq files because of large size.
 
 ## git commit instructions
 git add.README.md
