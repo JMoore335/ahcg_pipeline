@@ -61,9 +61,6 @@ gunzip resources.tar.gz
 
 tar -xvf resources.tar
 
-## github ssh
-Added github ssh key 'biol'
-
 ## Download NIST test data
 
 wget ftp://ftp-trace.ncbi.nih.gov/giab/ftp/data/NA12878/Garvan_NA12878_HG001_HiSeq_Exome/NIST7035_TAAGGCGA_L001_R1_001.fastq.gz
@@ -83,6 +80,29 @@ head -100000 NIST7035_TAAGGCGA_L001_R2_001.fastq > test_r2.fastq
 python3 ahcg_pipeline.py -t ./lib/Trimmomatic-0.36/trimmomatic-0.36.jar -b ./lib/bowtie2-2.2.9/bowtie2 -p ./lib/picard.jar -g ./lib/GenomeAnalysisTK.jar -i ./test_r*.fastq -w ./hg19 -d ./resources/dbsnp/dbsnp_138.hg19.vcf -r ./resources/genome/hg19.fa -a ./lib/Trimmomatic-0.36/adapters/TruSeq2-PE.fa -o outputdir
 
 
+###GIT SECTION
+
+## git ssh
+Added github ssh key 'biol'
+
+## changing remotes
+##Move to desired directory
+cd ahcg_pipeline/
+
+##List current remotes 
+git remote -v
+
+[origin  https://github.com/shashidhar22/ahcg_pipeline.git (fetch)]
+[origin  https://github.com/shashidhar22/ahcg_pipeline.git (push)]
+
+##Change my remote from HTTPS to SSH
+git remote set-url origin git@github.com:jmoore335/ahcg_pipeline.git
+
+##Check that the remote URL changed
+git remote -v
+
+[origin  git@github.com/jmoore335/ahcg_pipeline.git (fetch)]
+[origin  git@github.com/jmoore335/ahcg_pipeline.git (push)]
 
 ## git ignore
 Add the directories you don't wish to commit to git ignore
